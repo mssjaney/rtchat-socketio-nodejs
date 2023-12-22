@@ -2,9 +2,9 @@ window.onload = function() {
     let messages = [];
     let socket = io.connect('http://localhost:3700');
 
-    let field = document.querySelector(".field");
-    let sendBtn = document.querySelector(".send");
-    let content = document.getElementById("content");
+    let field: HTMLInputElement = document.querySelector(".field");
+    let sendBtn: HTMLElement = document.querySelector(".send");
+    let content: HTMLElement = document.getElementById("content");
 
     socket.on('message', function(data) {
 

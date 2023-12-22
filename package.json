@@ -4,7 +4,8 @@
   "description": "Real-time Web Chat baset on Socket.io and NodeJS",
   "main": "index.js",
   "scripts": {
-    "start": "nodemon index.js"
+    "start": "nodemon ./dist/index.js",
+    "build": "cp -rv src/tpl/ dist/tpl/"
   },
   "repository": {
     "type": "git",
@@ -22,6 +23,7 @@
     "socket.io": "^4.7.2"
   },
   "devDependencies": {
+    "@types/express": "^4.17.21",
     "nodemon": "^3.0.2"
   }
 }

@@ -1,4 +1,6 @@
-let express = require("express");
+import * as express from 'express';
+import { Server } from 'socket.io';
+
 let app = express();
 let port = 3700;
 
@@ -13,7 +15,7 @@ app.get("/", function(req, res) {
 app.use(express.static(__dirname + '/public'));
 
 let server = app.listen(port);
-let io = require('socket.io')(server);
+let io = new Server(server);
 
 io.sockets.on('connection', function(socket) {
     socket.emit('message', { message: 'Welcome to the chat board' });
