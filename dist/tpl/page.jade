@@ -2,11 +2,13 @@ doctype html
 html 
     head 
         title Real Time Web Chat
+        link(href='/css/style.css', rel='stylesheet')
         script(src='/chat.js')
         script(src='/socket.io/socket.io.js')
 
     body 
-        #content(style='width: 500px; height: 300px; margin: 0 0 20px 0; border: solid 1px #999; overflow-y: scroll;') 
+        h1 Welcome to My Portfolio
+        #content
         .controls 
-            input.field(style='width:350px;')
+            input.field(placeholder='ask away')
             input.send(type='button', value='send')
