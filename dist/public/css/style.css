@@ -1,12 +1,18 @@
 body {
+    display: flex;
+    flex-direction: column;
+    padding: 70px;
     color: white;
     background-color: #303030;
 }
 
+h1 {
+    text-align: center;
+}
+
 #content {
-    width: 950px;
+    display: flex;
     height: 450px;
-    flex-shrink: 0; 
     padding: 20px;
     margin-bottom: 20px;
     border-radius: 5px;
@@ -14,12 +20,16 @@ body {
     box-shadow: 0px 4px 4px 0px rgba(0, 0, 0, 0.25);
 }
 
+.controls {
+    display: flex;
+    flex-direction: column;
+}
+
 .field,
 .send {
     color: white;
     background-color: #303030;
     display: block;
-    width: 950px;
     height: 50px;
     flex-shrink: 0; 
     padding: 0 20px;
@@ -31,5 +41,4 @@ body {
 .send {
     color: white;
     background: #06F;
-    width: 995px;
 }
