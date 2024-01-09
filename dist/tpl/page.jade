@@ -3,12 +3,13 @@ html
     head 
         title Real Time Web Chat
         link(href='/css/style.css', rel='stylesheet')
+        script(src='http://localhost:3700/socket.io/socket.io.js')
         script(src='/chat.js')
-        script(src='/socket.io/socket.io.js')
 
     body 
         h1 Welcome to My Portfolio
         #content
         .controls 
+            input.name(placeholder='name')
             input.field(placeholder='ask away')
             input.send(type='button', value='send')

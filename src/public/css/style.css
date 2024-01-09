@@ -12,6 +12,7 @@ h1 {
 
 #content {
     display: flex;
+    flex-direction: column;
     height: 450px;
     padding: 20px;
     margin-bottom: 20px;
@@ -25,8 +26,13 @@ h1 {
     flex-direction: column;
 }
 
+#title {
+    color: #b9e853;
+}
+
 .field,
-.send {
+.send,
+.name {
     color: white;
     background-color: #303030;
     display: block;

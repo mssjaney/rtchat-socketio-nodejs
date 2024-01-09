@@ -18,7 +18,7 @@ let server = app.listen(port);
 let io = new Server(server);
 
 io.sockets.on('connection', function(socket) {
-    socket.emit('message', { message: '> This is real-time chatbot built in NodeJS on top of OpenAI API' });
+    socket.emit('message', { message: ' This is real-time chatbot built in NodeJS on top of OpenAI API' });
     socket.on('send', function(data) {
         io.sockets.emit('message', data);
     });
