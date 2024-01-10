@@ -19,6 +19,15 @@ let io = new Server(server);
 
 io.sockets.on('connection', function(socket) {
     socket.emit('message', { message: ' This is real-time chatbot built in NodeJS on top of OpenAI API' });
+    socket.on('join_room', (data) => {
+        const { username, room } = data;
+        socket.join(room);
+        console.log("hello room");
+        socket.to(room).emit('receive_message', {
+            message: `${username} has joined the room`,
+            username: 'CHAT_BOT'
+        });
+    });
     socket.on('send', function(data) {
         io.sockets.emit('message', data);
     });

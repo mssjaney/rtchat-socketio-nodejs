@@ -11,5 +11,10 @@ html
         #content
         .controls 
             input.name(placeholder='name')
+            select.chatroom
+                option(value="javascript") JavaScript
+                option(value="node") Node 
+                option(value="express") Express  
+            input.joinroom(type='button', value='join room')
             input.field(placeholder='ask away')
             input.send(type='button', value='send')

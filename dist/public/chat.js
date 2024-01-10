@@ -5,6 +5,8 @@ window.onload = function () {
     var sendBtn = document.querySelector(".send");
     var content = document.getElementById("content");
     var name = document.querySelector(".name");
+    var room = document.querySelector(".chatroom");
+    var joinBtn = document.querySelector(".joinroom");
     socket.on('message', function (data) {
         if (data.message) {
             messages.push(data);
@@ -19,6 +21,16 @@ window.onload = function () {
             console.log("Run into a problem: ", data);
         }
     });
+    socket.on('receive_message', function (data) {
+        console.log('received ', data);
+    });
+    function joinRoom() {
+        if (room.value !== '' && name.value !== '') {
+            socket.emit('join_room', { username: name.value, room: room.value });
+            console.log(room.value, name.value);
+        }
+    }
+    joinBtn.onclick = joinRoom;
     function sendMessage() {
         if (name.value === "") {
             alert('Please, type your Name');

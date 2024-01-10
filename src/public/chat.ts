@@ -5,7 +5,10 @@ window.onload = function() {
     let field: HTMLInputElement = document.querySelector(".field");
     let sendBtn: HTMLElement = document.querySelector(".send");
     let content: HTMLElement = document.getElementById("content");
+
     let name: HTMLInputElement = document.querySelector(".name");
+    let room: HTMLInputElement = document.querySelector(".chatroom");
+    let joinBtn: HTMLElement = document.querySelector(".joinroom");
 
     socket.on('message', function(data) {
 
@@ -24,6 +27,19 @@ window.onload = function() {
             console.log("Run into a problem: ", data);
         }
     });
+
+    socket.on('receive_message', (data) => {
+        console.log('received ', data)
+    });
+
+    function joinRoom() {
+        if (room.value !== '' && name.value !== '') {
+            socket.emit('join_room', { username: name.value, room: room.value });
+            console.log(room.value, name.value);
+        }
+    }
+
+    joinBtn.onclick = joinRoom;
 
     function sendMessage() {
         if (name.value === "") {

@@ -32,7 +32,9 @@ h1 {
 
 .field,
 .send,
-.name {
+.name,
+.chatroom,
+.joinroom {
     color: white;
     background-color: #303030;
     display: block;
@@ -44,7 +46,8 @@ h1 {
     border: 2px solid #06F;
 }
 
-.send {
+.send,
+.joinroom {
     color: white;
     background: #06F;
 }
