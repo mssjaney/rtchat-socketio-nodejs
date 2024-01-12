@@ -28,8 +28,11 @@ window.onload = function() {
         }
     });
 
-    socket.on('receive_message', (data) => {
+    socket.on('receive_message', function(data) {
         console.log('received ', data)
+    });
+    socket.on('join_room', function(data) {
+        console.log('join room received ', data)
     });
 
     function joinRoom() {

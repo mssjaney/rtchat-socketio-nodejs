@@ -7,10 +7,11 @@ window.onload = function () {
     var name = document.querySelector(".name");
     var room = document.querySelector(".chatroom");
     var joinBtn = document.querySelector(".joinroom");
+    var html = "";
     socket.on('message', function (data) {
         if (data.message) {
             messages.push(data);
-            var html = "";
+            
             for (var i = 0; i < messages.length; i++) {
                 html += "<span id='title'><b>" + (messages[i].username ? messages[i].username : 'Server') + ": </span></b>";
                 html += messages[i].message + "<br />";
@@ -23,6 +24,11 @@ window.onload = function () {
     });
     socket.on('receive_message', function (data) {
         console.log('received ', data);
+        html += data.message;
+        content.innerHTML = html;
+    });
+    socket.on('join_room', function(data) {
+        console.log('join room received ', data)
     });
     function joinRoom() {
         if (room.value !== '' && name.value !== '') {

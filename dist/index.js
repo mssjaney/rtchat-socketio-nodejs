@@ -23,7 +23,10 @@ var io = new socket_io_1.Server(server, {
         methods: ['GET', 'POST'],
     }
 });
+
+var CHAT_BOT = 'ChatBot';
 io.sockets.on('connection', function (socket) {
+    console.log(`User connected ${socket.id}`);
     socket.emit('message', { message: ' This is real-time chatbot built in NodeJS on top of OpenAI API' });
     socket.on('join_room', function (data) {
         var username = data.username, room = data.room;
@@ -31,8 +34,12 @@ io.sockets.on('connection', function (socket) {
         console.log("hello room");
         socket.to(room).emit('receive_message', {
             message: "".concat(username, " has joined the room"),
-            username: 'CHAT_BOT'
+            username: CHAT_BOT
         });
+    });
+    socket.emit('receive_message', {
+        message: 'Welcome',
+        username: CHAT_BOT
     });
     socket.on('send', function (data) {
         io.sockets.emit('message', data);
