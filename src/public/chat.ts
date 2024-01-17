@@ -1,6 +1,6 @@
 window.onload = function() {
     let messages = [];
-    let socket = io.connect('http://localhost:3700');
+    let socket = io('http://localhost:3700');
 
     let field: HTMLInputElement = document.querySelector(".field");
     let sendBtn: HTMLElement = document.querySelector(".send");
@@ -10,12 +10,12 @@ window.onload = function() {
     let room: HTMLInputElement = document.querySelector(".chatroom");
     let joinBtn: HTMLElement = document.querySelector(".joinroom");
 
-    socket.on('message', function(data) {
+    socket.on('message', (data) => {
 
         if (data.message) {
             messages.push(data);
 
-            let html = "";
+            let html = socket.id;
             for (let i=0; i < messages.length; i++) {
                 html += "<span id='title'><b>" + (messages[i].username ? messages[i].username : 'Server') + ": </span></b>";
                 html += messages[i].message + "<br />";
@@ -28,18 +28,19 @@ window.onload = function() {
         }
     });
 
-    socket.on('receive_message', function(data) {
-        console.log('received ', data)
-    });
-    socket.on('join_room', function(data) {
-        console.log('join room received ', data)
+    socket.on('receive_message', (data) => {
+        console.log('received message ', data)
+        let html = "";
+        html += "<span id='title'><b>" + (data.username ? data.username : 'Server') + ": </span></b>";
+        html += data.message + "<br />";
+        content.innerHTML = data.message;
     });
 
     function joinRoom() {
-        if (room.value !== '' && name.value !== '') {
-            socket.emit('join_room', { username: name.value, room: room.value });
-            console.log(room.value, name.value);
-        }
+        // if (room.value !== '' && name.value !== '') {
+            socket.emit('join_room', { username: name.value, room: socket.id });
+            console.log('join_room', room.value, name.value);
+        // }
     }
 
     joinBtn.onclick = joinRoom;
