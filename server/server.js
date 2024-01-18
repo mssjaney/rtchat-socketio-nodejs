@@ -15,7 +15,8 @@ io.on('connection', socket => {
         }
     });
 
-    socket.on("join-room", room => {
+    socket.on("join-room", (room, callback) => {
         socket.join(room);
+        callback(`Welcome to the ${room} room`);
     })
 });
