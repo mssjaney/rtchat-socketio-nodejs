@@ -25,13 +25,14 @@ sendBtn.addEventListener("click", e => {
 
     if (message === "") return;
     displayMessage(message);
-    socket.emit("send-message", message);
+    socket.emit("send-message", message, room);
 
     messageInput.value = "";
 });
 
 joinBtn.addEventListener("click", () => {
     const room = roomInput.value;
+    socket.emit("join-room", room);
 });
 
 function displayMessage(message) {
