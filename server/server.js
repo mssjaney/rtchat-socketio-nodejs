@@ -7,8 +7,13 @@ const io = require("socket.io")(3000, {
     }
 });
 
+const userIo = io.of("/user");
+userIo.on("connection", socket => {
+    console.log("Connected to user namespace");
+});
+
 io.on("connection", socket => {
-    console.log(socket.id);
+    console.log("Connected to socket: ", socket.id);
 
     socket.on("send-message", (message, room) => {
         if (room === "") {

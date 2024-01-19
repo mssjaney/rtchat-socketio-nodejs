@@ -9,6 +9,7 @@ const roomInput = document.querySelector(".chatroom");
 const joinBtn = document.querySelector(".joinroom");
 
 const socket = io("http://localhost:3000");
+const userSocket = io("http://localhost:3000/user");
 
 socket.on("connect", () => {
     displayMessage(`Connected with id: ${socket.id}`);
